@@ -1,22 +1,10 @@
 $(document).ready(function(){
     new Vue({
-        el: '#app',
-        data: {
-            newTodo:'',
-            todos: [
-                {text : 'Add some todos' }
-            ]
-        },
+        el: '.ctn-menu-icon',
         methods: {
-            addTodo: function(){
-                var text = this.newTodo.trim();
-                if(text){
-                    this.todos.push({text : text});
-                    this.newTodo = '';
-                }
-            },
-            removeTodo: function(index){
-                this.todos.splice(index,1);
+            launchMenu: function(){
+                this.$el.classList.toggle('activ');
+                document.getElementById('menu').classList.toggle('activ');
             }
         }
     })

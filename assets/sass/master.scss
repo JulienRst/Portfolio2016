@@ -1,0 +1,407 @@
+$head-title : Selima;
+$body-font : Montserrat;
+$body-title : Nexa;
+$dark-blue : #171D23;
+$light-blue : #607890;
+$dark-red : #A64028;
+$light-red : #E64C3B;
+$background : #EAE5DF;
+
+@mixin mquery($size) {
+  if $size == small {
+    @media (min-width: 30em) {
+      @content;
+    }
+  }
+
+  else if $size == medium {
+    @media (min-width: 40em) {
+      @content;
+    }
+  }
+}
+
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+   @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+
+@font-face {
+    font-family: 'Selima';
+    src:url(../fonts/Selima.otf);
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src:url(../fonts/Nexa_Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src:url(../fonts/Montserrat.otf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: $background;
+    text-align: center;
+    margin: 0;
+}
+
+h1 {
+    font-family: $head-title;
+    color: $dark-blue;
+    font-size: 15em;
+    text-shadow: 2px 6px $light-red;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+h1.the-big-one {
+    transform: rotate(-8deg);
+}
+
+.clear {
+    clear:both;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+//
+// BASIC BUTTON TEMPLATE :: RED WITH BACKGROUND TRANSITION
+//
+
+
+button {
+    padding: 0.3em 1em;
+    font-family: $body-font;
+    color: $light-red;
+    border: solid 0.1em $light-red;
+    font-size: 2.5em;
+    background-color: $light-red;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+button:focus {
+    outline: none;
+}
+
+button::after {
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    content:'';
+    border-radius: 50%;
+    width: 25em;
+    height: 25em;
+    opacity: 1;
+    background-color: $background;
+    transition: 0.5s;
+}
+
+button:hover {
+    color: $background;
+}
+
+button:hover::after {
+    width: 0em;
+    height: 0em;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+// HOMEPAGE
+
+.center {
+    text-align: center;
+    // The three following are for the home page
+    p {
+        font-family: $body-font;
+        color: $dark-blue;
+        margin: 0;
+    }
+
+    p.title-medium {
+        font-size: 2em;
+    }
+
+    p.title-small {
+        font-size: 1.6em;
+    }
+
+    p.looking-for {
+        font-family: $body-title;
+        font-size: 3em;
+        margin-top: 1em;
+    }
+}
+
+// MENU
+
+nav {
+    z-index: -1000;
+    position: fixed;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+nav.activ {
+    z-index: 10;
+    position: fixed;
+    display: initial;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+
+}
+
+nav.activ::after {
+    width: 10000px;
+    height: 10000px;
+    transition: 2s;
+}
+
+nav::after {
+    content:'';
+    position: absolute;
+    z-index: -1;
+    display: block;
+    background-color: $dark-blue;
+    border-radius: 50%;
+    transform: translateX(50%) translateY(-50%);
+    width: 0;
+    height: 0;
+    top: 2em;
+    right: 2.5em;
+}
+
+.menu-icon-container:before{
+    content: "";
+    display: block;
+    padding-top: 100%;  /* ratio of 1:1*/
+}
+
+.activ .menu-icon-container {
+    opacity: 1;
+    transition-delay: 0.5s;
+    transition-duration: .2s;
+}
+
+.menu-icon-container {
+
+    * {
+        cursor: pointer;
+    }
+    width: calc(100%/5);
+    height: width;
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transition-delay: 0.5s;
+    transition-duration: 0.2s;
+
+    .menu-item {
+        z-index: 1000;
+        position: absolute;
+        font-family: Selima;
+        color: $background;
+        font-size: 4em;
+        margin: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        text-shadow: stroke(5,$dark-blue);
+    }
+
+    .menu-icon-part {
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    // ABOUT ME
+    #amcomp {
+        z-index: 4;
+        width: 50%;
+        top: 50%;
+        left: 50%;
+    }
+
+    #amhead {
+        z-index: 3;
+        width: 35%;
+        top: 20%;
+        left: 52%;
+    }
+
+    #amhand {
+        z-index: 2;
+        width: 10%;
+        top: 50%;
+        left: 75%;
+    }
+
+    #ampaper {
+        z-index: 5;
+        width: 30%;
+        top: 60%;
+        left: 25%;
+    }
+
+    // PROJECTS
+
+    #pcog {
+        z-index: 1;
+        width: 35%;
+        top: 57%;
+        left: 25%;
+    }
+
+    #ppaper {
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        width: 55%;
+    }
+
+    #pmouse {
+        z-index: 4;
+        top: 80%;
+        left: 50%;
+        width: 20%;
+    }
+
+    #ppen {
+        z-index: 3;
+        top: 35%;
+        left: 50%;
+        width: 20%;
+    }
+
+    // EXPERIENCES
+
+    #expdiploma {
+        z-index: 3;
+        top: 50%;
+        width: 60%;
+    }
+
+    #expcog {
+        z-index: 1;
+        top: 50%;
+        left: 80%;
+        width: 35%;
+    }
+
+    #expdiamond {
+        z-index: 2;
+        top: 50%;
+        left: 20.5%;
+        width: 35%;
+    }
+
+    // CONTACT
+
+    #cthunder {
+        z-index: 5;
+        top: 60%;
+        left: 35%;
+        width: 15%;
+    }
+
+    #csatellite {
+        z-index: 4;
+        top: 60%;
+        left: 35%;
+        width: 60%;
+    }
+
+    #cwaveone {
+        z-index: 4;
+        width: 50%;
+        top: 35%;
+        left: 60%;
+    }
+
+    #cwavetwo {
+        z-index: 4;
+        width: 40%;
+        top: 40%;
+        left: 55%;
+    }
+
+    #cwavethree {
+        z-index: 4;
+        width: 30%;
+        top: 45%;
+        left: 50%;
+    }
+}
+
+
+
+// MENU ICON
+
+div.ctn-menu-icon {
+    position: absolute;
+    z-index: 11;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+    div.menu-bar {
+        display: block;
+        width: 3.5em;
+        height: 0.5em;
+        background-color: $dark-blue;
+        transition: 0.3s;
+    }
+
+    div.menu-bar:not(:last-child){
+        margin-bottom: 0.5em;
+    }
+}
+
+div.ctn-menu-icon.activ {
+    div.menu-bar {
+        transition: 0.3s;
+        background-color: $background;
+    }
+    div.menu-bar:nth-child(1) {
+        transform: translateY(200%) rotate(45deg);
+    }
+    div.menu-bar:nth-child(2) {
+        opacity: 0;
+    }
+    div.menu-bar:nth-child(3) {
+        transform: translateY(-200%) rotate(-45deg);
+    }
+}
