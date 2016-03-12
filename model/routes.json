@@ -1,0 +1,17 @@
+{
+    "" : {
+        "request" : "view/index.php"
+    },
+    "index/" : {
+        "request" : "view/index.php"
+    },
+    "about-me/" : {
+        "request" : "view/about-me.php"
+    },
+    "projects/" : {
+        "request" : "view/projects.php"
+    },
+    "404/" : {
+        "request" : "view/404.php"
+    }
+}
