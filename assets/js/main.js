@@ -69,8 +69,33 @@
                 {
                     activ: true,
                     id: '01',
-                    title: 'Here come the title of the projects',
-                    description : 'non',
+                    title: 'Webimac : Site Web Corporate pour la formation IMAC',
+                    description :
+                        'small description of the project small description of the project small description of the project small description of the project small description of the project small description of the project '
+                    ,
+                    with : [
+                        'Alexander Feller',
+                        'Charlotte Nortier',
+                        'Léa Rozen Sudry'
+                    ],
+                    hashtags : [
+                        'PHP',
+                        'JSON',
+                        'Laravel',
+                        'JavaScript',
+                        'HTML',
+                        'CSS'
+                    ],
+                    link : 'http://ingenieur-imac.fr/',
+                    img : 'imac.png'
+                },
+                {
+                    activ: false,
+                    id: '02',
+                    title: 'Here come the title of the newer projects projects',
+                    description :
+                        'small description of the project small description of the project small description of the project small description of the project small description of the project small description of the project '
+                    ,
                     with : [
                         'Personne 1',
                         'Personne 2',
@@ -81,19 +106,55 @@
                         'PHP',
                         'JSON',
                         'Laravel',
-                        'JavaScript'
+                        'JavaScript',
+                        'HTML',
+                        'CSS'
                     ],
                     link : 'http://www.ma-bite.fr'
-                },
-                {
-                    id: '02'
                 },{
                     id: '03'
                 },{
                     id: '04'
                 }
             ]
+        },
+        methods: {
+            changeProject: function(idProject){
+                for (var i = 0; i < projects["projects"].length; i++) {
+                    var project = projects["projects"][i];
+                    if (project.activ === true) {
+                        console.log('found');
+                        project.activ = false;
+                        projects["projects"][idProject].activ = true;
+                        break;
+                    }
+                }
+            }/*,
+            timerProject: function(){
+                console.log('ola');
+                $('.proj-timer .runner').animate({
+                    width : "110%"
+                }, 15000, 'linear', function(){
+                    var current;
+                    console.log('ola');
+                    for (var i = 0; i < projects["projects"].length; i++) {
+                        var project = projects["projects"][i];
+                        if (project.activ === true) {
+                            current = i;
+                            break;
+                        }
+                    }
+                    if(current == (projects["projects"].length - 1)){projects.changeProject(0)}
+                    else {projects.changeProject(i+1)}
+                    $('.proj-timer .runner').css('width','0');
+                    projects.timerProject();
+                })
+            }*/
         }
     })
+
+    $(document).ready(function(){
+        projects.timerProject();
+    });
 
 //});

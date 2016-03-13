@@ -11,11 +11,12 @@
             <h1>What am I doing ?!</h1>
             <div class="proj-left">
                 <ul>
-                    <li class="link-for-project" v-bind:class="{'activ' : project.activ}" v-for="project in projects" >{{project.id}}</li>
+                    <li v-on:click="changeProject($index)" class="link-for-project" v-bind:class="{'activ' : project.activ}" v-for="project in projects" >{{project.id}}</li>
                 </ul>
                 <div class="border-right"></div>
             </div>
             <div v-for="project in projects" v-show="project.activ" class="proj-center">
+                <div class="ctn-img-project"><img src="../assets/images/projects/{{project.img}}"/></div>
                 <h2>{{project.title}}</h2>
                 <p>
                     {{project.description}}
@@ -29,14 +30,14 @@
                         </ul>
                     </div>
                     <div class="hashtags">
-                        <div v-for="hashtag in project.hashtags" class="hashtag">{{hashtag}}</div>
+                        <div class="ctn-hashtags">
+                            <div v-for="hashtag in project.hashtags" class="hashtag">{{hashtag}}</div>
+                        </div>
                     </div>
                     <a href="{{project.link}}" target="_blank"><img class="go-to-site" src="../assets/images/go-to-site.png"/></a>
                 </div>
             </div>
-            <div class="proj-timer">
-                <div class="progression">
-            </div>
+            <div class="proj-timer"><div class="runner"></div></div>
         </div>
         <script src="../bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
         <script src="../bower_components/vue/dist/vue.min.js" charset="utf-8"></script>

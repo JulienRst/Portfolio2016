@@ -567,15 +567,15 @@ div.ctn-menu-icon.activ {
 
 .project {
     font-size: 0;
-
+    text-align: left;
     h1 {
         font-size: $title-size;
         text-align: left;
         margin-left: calc(100%/5);
     }
-
     .proj-left {
         vertical-align: top;
+        text-align: center;
         font-size: initial;
         display: inline-block;
         width: calc(100%/5);
@@ -588,6 +588,7 @@ div.ctn-menu-icon.activ {
                 font-family: $body-font;
                 color: $dark-blue;
                 margin-bottom: 0.5em;
+                cursor: pointer;
             }
             .link-for-project.activ {
                 color: $light-red;
@@ -610,14 +611,124 @@ div.ctn-menu-icon.activ {
     .proj-center {
         font-size: initial;
         display: inline-block;
-        width: calc(100%/5 * 4);
+        width: calc(100%/5 * 3);
+        text-align: left;
 
-        h2 {
-            text-align: left;
+        .ctn-img-project {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 40rem;
+            height: 40rem;
+            opacity: 0.5;
+
+            img {
+                width: 40rem;
+                height: 40rem;
+            }
         }
     }
 
-    .go-to-site {
-        width: 4em;
+    .bottom-part {
+        position: relative;
+        display: flex;
+        align-content: space-around;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-flow: center;
+        align-items: flex-end;
+
+        .big-number {
+            display: inline-block;
+            font-size: 10em;
+            vertical-align: bottom;
+            line-height: 75%;
+        }
+
+        .colleague {
+            display: inline-block;
+            vertical-align: bottom;
+            text-align: center;
+
+            .with {
+                display: initial;
+                margin: auto;
+                color: white;
+                background-color: $dark-blue;
+                padding: 0.4em 0.8em;
+            }
+
+            ul, ul li {
+                margin: 0;
+                padding: 0;
+            }
+
+            ul {
+                margin-top: 1em;
+            }
+
+            ul li {
+                list-style: 0;
+                font-size: 1.5em;
+                margin-bottom: 0.2em;
+            }
+
+            ul li:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .hashtags {
+            display: inline-block;
+            vertical-align: initial;
+            text-align: center;
+            align-self: center;
+
+            .ctn-hashtags {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                flex-flow: center;
+
+                .hashtag {
+                    border: 2px solid $dark-blue;
+                    padding: 3px 8px;
+                    margin: 5px 8px;
+                    font-size: 1.1em;
+                }
+            }
+        }
+
+        .go-to-site {
+            width: 4em;
+        }
+    }
+
+    .proj-timer {
+        margin-top: 34px;
+        margin-left: calc(100%/5);
+        width: calc(100%/5 * 3 - 4rem);
+        height: 15px;
+        border: 3px solid $dark-blue;
+        overflow: hidden;
+        position: relative;
+
+        .runner {
+            position: absolute;
+            display: block;
+            //width: 0;
+            width: 52%;
+            height: 300%;
+            top: -10px;
+            left: -10px;
+            transform: skewX(-45deg);
+            background-color: $dark-blue;
+        }
     }
 }
